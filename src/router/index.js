@@ -5,7 +5,10 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import HomeDashboard from '../views/dashboard/HomeDashboard.vue'
 import NewCredit from '../views/dashboard/NewCredit.vue'
+import Users from '../views/dashboard/Users.vue'
+import Credit from '../views/dashboard/Credit.vue'
 import Files from '../views/dashboard/Files.vue'
+import Roles from '../views/dashboard/Roles.vue'
 import AppLayout from '../AppLayout.vue'
 import DashboardLayout from '../DashboardLayout.vue'
 Vue.use(VueRouter)
@@ -13,6 +16,10 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: '/Inicio'
+  },
+  {
+    path: '*',
     redirect: '/Inicio'
   },
   {
@@ -54,6 +61,21 @@ const routes = [
         path: '/Files',
         name: 'Files',
         component:  Files
+      },
+      {
+        path: '/Roles',
+        name: 'Roles',
+        component:  Roles
+      },
+      {
+        path: '/Users',
+        name: 'Users',
+        component:  Users
+      },
+      {
+        path: '/Credits',
+        name: 'Credit',
+        component:  Credit
       },
     ]
   }

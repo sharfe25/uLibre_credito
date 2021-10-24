@@ -79,7 +79,7 @@
                             
                         </div>
                         <div class="d-flex justify-center">
-                            <v-btn color="secondary" class="text-capitalize text-subtitle-1 font-weight-medium pa-0" text>¿Ya tienes una cuenta?</v-btn>
+                            <v-btn color="secondary" href="login" class="text-capitalize text-subtitle-1 font-weight-medium pa-0" text>¿Ya tienes una cuenta?</v-btn>
                         </div>
                     </v-form>
                 </v-card>
@@ -93,10 +93,6 @@
 
   export default {
     name: 'Login',
-
-    components: {
-     
-    },
     data: () => ({
         recordar:false,
         selectedItem: 1,
@@ -116,6 +112,7 @@
             v => !!v || "Este campo es requerido",
         ],
         show_confirm:false,
+        loading:false,
     }),
     methods: {
         login(){

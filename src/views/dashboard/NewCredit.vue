@@ -246,6 +246,8 @@
         required_rules: [
             v => !!v || "Este campo es requerido",
         ],
+        success: false,
+        loading:false
     }),
     methods: {
         newCredit(){
@@ -267,6 +269,14 @@
             this.credit.deadline='10/02/2022'
             
         },
-    }
+        getUser() {
+            if(localStorage.getItem("role") != 3) {
+                this.$router.push("HomeDashboard")
+            }
+        }
+    },
+    created() {
+        this.getUser()
+    },
   }
 </script>
