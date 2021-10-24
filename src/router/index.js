@@ -7,6 +7,7 @@ import HomeDashboard from '../views/dashboard/HomeDashboard.vue'
 import NewCredit from '../views/dashboard/NewCredit.vue'
 import Users from '../views/dashboard/Users.vue'
 import Credit from '../views/dashboard/Credit.vue'
+import CreditRenewal from '../views/dashboard/CreditRenewal.vue'
 import Files from '../views/dashboard/Files.vue'
 import Roles from '../views/dashboard/Roles.vue'
 import AppLayout from '../AppLayout.vue'
@@ -76,6 +77,11 @@ const routes = [
         path: '/Credits',
         name: 'Credit',
         component:  Credit
+      },
+      {
+        path: '/CreditRenewal',
+        name: 'CreditRenewal',
+        component:  CreditRenewal
       },
     ]
   }

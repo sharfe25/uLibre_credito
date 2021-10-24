@@ -7,7 +7,7 @@
         tile
         style="border-radius: 10px !important;"
         >
-            <div class="text-center text-h4 font-weight-medium mb-5">Solicita tu Credito</div>
+            <div class="text-center text-h4 font-weight-medium mb-5">Renovación de Credito</div>
             <v-alert type="error" v-model="error" style="text-align: left">
                 {{error_message}}
             </v-alert>
@@ -85,39 +85,6 @@
                 label="Fecha limite cuota inicial"
                 disabled
                 ></v-text-field>
-                
-                <p class="text-subtitle-2 mt-3 mb-0">Información del credito: </p>
-                <v-divider color="black"></v-divider>
-
-                <v-text-field
-                v-model="credit.name"
-                :rules="required_rules"
-                label="Nombre"
-                ></v-text-field>
-
-                <v-text-field
-                v-model="credit.id"
-                :rules="required_rules"
-                label="Numero de documento"
-                ></v-text-field>
-                
-                <v-text-field
-                v-model="credit.address"
-                :rules="required_rules"
-                label="Dirección"
-                ></v-text-field>
-
-                <v-text-field
-                v-model="credit.phone"
-                :rules="required_rules"
-                label="Celular"
-                ></v-text-field>
-
-                <v-text-field
-                v-model="credit.activeIncome"
-                :rules="required_rules"
-                label="Ingresos activos"
-                ></v-text-field>
 
                 <div class="pt-1">
                     <v-btn
@@ -137,70 +104,6 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-dialog
-        max-width="600px"
-        v-model="dialog"
-    >
-        <v-toolbar
-            dark
-            color="secondary"
-            class="text-capitalize text-subtitle-1 font-weight-medium pa-0"
-        >
-            <v-btn
-            icon
-            dark
-            @click="dialog=false"
-            >
-            <v-icon>fas fa-times</v-icon>
-            </v-btn>
-        </v-toolbar>
-        <v-card class="pa-3" outlined>
-        <h3 class="d-flex justify-center text-center">
-            Descargar documentos
-        </h3>
-        <v-card-text>
-            <v-container>
-                <v-btn
-                color="primary"
-                class="mr-4 mb-2"
-                large
-                width="100%"
-                min-height="50px"
-                dark
-                >
-                    Pagare
-                </v-btn>
-                <v-btn
-                color="primary"
-                class="mr-4"
-                large
-                width="100%"
-                min-height="50px"
-                dark
-                >
-                    Formulario de credito
-                </v-btn>
-            </v-container>
-        </v-card-text>
-        <v-card-actions v-if="!success">
-            <v-spacer></v-spacer>
-            <v-btn
-            color="secondary"
-            @click="dialog=false"
-            text
-            >
-            Ok
-            </v-btn>
-            <v-btn
-            color="primary"
-            @click="dialog=false"
-            text
-            >
-            Cancelar
-            </v-btn>
-        </v-card-actions>
-        </v-card>
-    </v-dialog>
   </div>
 </template>
 
@@ -208,7 +111,7 @@
  
 
   export default {
-    name: 'NewCredit',
+    name: 'CreditRenewal',
 
     components: {
      
@@ -246,8 +149,6 @@
         required_rules: [
             v => !!v || "Este campo es requerido",
         ],
-        success: false,
-        loading:false
     }),
     methods: {
         newCredit(){
@@ -269,14 +170,6 @@
             this.credit.deadline='10/02/2022'
             
         },
-        getUser() {
-            if(localStorage.getItem("role") != 3) {
-                this.$router.push("HomeDashboard")
-            }
-        }
-    },
-    created() {
-        this.getUser()
-    },
+    }
   }
 </script>

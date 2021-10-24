@@ -85,10 +85,16 @@ export default {
                 title: 'Créditos'
             },
             {
+                id: 8,
+                icon: 'fas fa-credit-card',
+                title: 'Renovación'
+            },
+            {
                 id: 7,
                 icon: 'fa-sign-out-alt',
                 title: 'Cerrar sesión'
             },
+            
         ],
         drawer: true,
         group: null,
@@ -102,6 +108,8 @@ export default {
                 this.$router.push('/HomeDashboard')
             }else if(i === 2) {
                 this.$router.push('/NewCredit')
+            }else if(i === 8) {
+                this.$router.push('/CreditRenewal')
             }else if(i === 3) {
                 this.$router.push('/Files')
             }else if(i === 4) {

@@ -106,12 +106,12 @@ import ResetPassword from '@/components/ResetPassword'
                     this.$router.push({
                         name:'HomeDashboard'
                     })
-                    localStorage.setItem('role',2)
+                    localStorage.setItem('role',3)
                 }else if (this.user.email=='revisador@gmail.com' && this.user.password=='PASSWORD'){
                     this.$router.push({
                         name:'HomeDashboard'
                     })
-                    localStorage.setItem('role',3)
+                    localStorage.setItem('role',2)
                 }else{
                     this.error=true;
                     this.error_message='Usuario o contraseña incorrecta'
