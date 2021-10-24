@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import HomeDashboard from '../views/dashboard/HomeDashboard.vue'
 import NewCredit from '../views/dashboard/NewCredit.vue'
+import Files from '../views/dashboard/Files.vue'
 import AppLayout from '../AppLayout.vue'
 import DashboardLayout from '../DashboardLayout.vue'
 Vue.use(VueRouter)
@@ -48,6 +49,11 @@ const routes = [
         path: '/NewCredit',
         name: 'NewCredit',
         component:  NewCredit
+      },
+      {
+        path: '/Files',
+        name: 'Files',
+        component:  Files
       },
     ]
   }
