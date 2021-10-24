@@ -68,55 +68,23 @@
                 :rules="required_rules"
                 dense
                 filled
+                @change="changeQuotas"
                 label="Cuotas"
                 ></v-autocomplete>
 
                 <v-text-field
-                v-model="credit.value"
-                :rules="required_rules"
+                v-model="credit.initialFee"
                 label="Cuota inicial"
                 prefix="$"
                 disabled
                 ></v-text-field>
 
-                <v-dialog
-                    ref="dialog"
-                    v-model="modal"
-                    :return-value.sync="credit.dateQuota"
-                    width="290px"
-                >
-                    <template v-slot:activator="{ on, attrs }">
-                    <v-text-field
-                        v-model="credit.dateQuota"
-                        :rules="required_rules"
-                        label="Fecha limite cuota inicial"
-                        prepend-icon="fas fa-calendar"
-                        readonly
-                        v-bind="attrs"
-                        v-on="on"
-                    ></v-text-field>
-                    </template>
-                    <v-date-picker
-                    v-model="credit.dateQuota"
-                    scrollable
-                    >
-                    <v-spacer></v-spacer>
-                    <v-btn
-                        text
-                        color="primary"
-                        @click="modal = false"
-                    >
-                        Cancel
-                    </v-btn>
-                    <v-btn
-                        text
-                        color="primary"
-                        @click="$refs.dialog.save(date)"
-                    >
-                        OK
-                    </v-btn>
-                    </v-date-picker>
-                </v-dialog>
+                <v-text-field
+                v-model="credit.deadline"
+                :rules="required_rules"
+                label="Fecha limite cuota inicial"
+                disabled
+                ></v-text-field>
                 
                 <p class="text-subtitle-2 mt-3 mb-0">Información del credito: </p>
                 <v-divider color="black"></v-divider>
@@ -164,12 +132,75 @@
                     >
                         Guardar
                     </v-btn>
-                    
                 </div>
             </v-form>
         </v-card>
       </v-col>
     </v-row>
+    <v-dialog
+        max-width="600px"
+        v-model="dialog"
+    >
+        <v-toolbar
+            dark
+            color="secondary"
+            class="text-capitalize text-subtitle-1 font-weight-medium pa-0"
+        >
+            <v-btn
+            icon
+            dark
+            @click="dialog=false"
+            >
+            <v-icon>fas fa-times</v-icon>
+            </v-btn>
+        </v-toolbar>
+        <v-card class="pa-3" outlined>
+        <h3 class="d-flex justify-center text-center">
+            Descargar documentos
+        </h3>
+        <v-card-text>
+            <v-container>
+                <v-btn
+                color="primary"
+                class="mr-4 mb-2"
+                large
+                width="100%"
+                min-height="50px"
+                dark
+                >
+                    Pagare
+                </v-btn>
+                <v-btn
+                color="primary"
+                class="mr-4"
+                large
+                width="100%"
+                min-height="50px"
+                dark
+                >
+                    Formulario de credito
+                </v-btn>
+            </v-container>
+        </v-card-text>
+        <v-card-actions v-if="!success">
+            <v-spacer></v-spacer>
+            <v-btn
+            color="secondary"
+            @click="dialog=false"
+            text
+            >
+            Ok
+            </v-btn>
+            <v-btn
+            color="primary"
+            @click="dialog=false"
+            text
+            >
+            Cancelar
+            </v-btn>
+        </v-card-actions>
+        </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -187,6 +218,7 @@
         selectedItem: 1,
         show:false,
         modal:false,
+        dialog:false,
         credit:{
             year:'',
             program:'',
@@ -198,6 +230,8 @@
             id:'',
             address:'',
             phone:'',
+            initialFee:0,
+            deadline:''
         },
         quota:[1,2,3],
         error_message:'',
@@ -216,17 +250,22 @@
     methods: {
         newCredit(){
             if (this.$refs['credit_form'].validate()) {
-                
+                this.dialog=true
+                this.$refs['credit_form'].reset()
             }else{
                 this.error=true;
                 this.error_message='Debe completar el formulario'
             }
         },
         settingValue(){
-            console.log('hii')
             if(this.credit.year!='' && this.credit.period!=''){
                 this.credit.value='1212121'
             }
+        },
+        changeQuotas(){
+            this.credit.initialFee=1111
+            this.credit.deadline='10/02/2022'
+            
         },
     }
   }
