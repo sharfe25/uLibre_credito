@@ -92,6 +92,7 @@ import ResetPassword from '@/components/ResetPassword'
         required_rules: [
             v => !!v || "Este campo es requerido",
         ],
+        loading: false
     }),
     methods: {
         login(){
@@ -100,18 +101,17 @@ import ResetPassword from '@/components/ResetPassword'
                     this.$router.push({
                         name:'HomeDashboard'
                     })
-                    this.$cookies.set('role',1)
-                    console.log(window.$cookies.get('user'))
+                    localStorage.setItem('role',1)
                 }else if (this.user.email=='user@gmail.com' && this.user.password=='PASSWORD'){
                     this.$router.push({
                         name:'HomeDashboard'
                     })
-                    this.$cookies.set('role',2)
+                    localStorage.setItem('role',2)
                 }else if (this.user.email=='revisador@gmail.com' && this.user.password=='PASSWORD'){
                     this.$router.push({
                         name:'HomeDashboard'
                     })
-                    this.$cookies.set('role',3)
+                    localStorage.setItem('role',3)
                 }else{
                     this.error=true;
                     this.error_message='Usuario o contraseña incorrecta'

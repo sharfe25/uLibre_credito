@@ -21,12 +21,12 @@
         item-key="name"
         class="elevation-1 mx-16"
         >
-            <template v-slot:item.download="{ item }">
+            <template v-slot:[`item.download`]>
                 <v-btn icon>
                     <v-icon>fas fa-download</v-icon>
                 </v-btn>
             </template>
-            <template v-slot:item.delivered="{ item }">
+            <template v-slot:[`item.delivered`]="{ item }">
                 <v-checkbox
                 class="ml-16"
                 v-model="item.delivered"
@@ -67,5 +67,15 @@
             }
         ]
     }),
+    methods: {
+        getUser() {
+            if(localStorage.getItem("role") != 3) {
+                this.$router.push("HomeDashboard")
+            }
+        }
+    },
+    created() {
+        this.getUser()
+    },
   }
 </script>

@@ -22,7 +22,7 @@
                 <v-img contain src="../../assets/image/user.png" ></v-img>
             </v-avatar>
             <v-card-title class="justify-center white--text pb-0 mb-0">
-                Admin
+                {{role}}
             </v-card-title>
             <v-list
                 flat
@@ -71,6 +71,21 @@ export default {
             },
             {
                 id: 4,
+                icon: 'fas fa-users',
+                title: 'Usuarios'
+            },
+            {
+                id: 5,
+                icon: 'fas fa-user-tag',
+                title: 'Roles'
+            },
+            {
+                id: 6,
+                icon: 'fas fa-credit-card',
+                title: 'Créditos'
+            },
+            {
+                id: 7,
                 icon: 'fa-sign-out-alt',
                 title: 'Cerrar sesión'
             },
@@ -90,14 +105,31 @@ export default {
             }else if(i === 3) {
                 this.$router.push('/Files')
             }else if(i === 4) {
+                this.$router.push('/Users')
+            }else if(i === 5) {
+                this.$router.push('/Roles')
+            }else if(i === 6) {
+                this.$router.push('/Credits')
+            }else if(i === 7) {
                 this.$router.push('/')
             }
         },
+        getUser() {
+            if(localStorage.getItem("role") == 1) {
+                this.role = 'ADMINISTRADOR'
+                this.menu.splice(1, 2)
+                this.menu.splice(3, 1)
+            }else if(localStorage.getItem("role") == 2) {
+                this.role = 'VALIDADOR'
+                this.menu.splice(1, 4)
+            }else if(localStorage.getItem("role") == 3) {
+                this.role = 'ESTUDIANTE'
+                this.menu.splice(3, 3)
+            }
+        }
     },
     created() {
-    },
-    mounted() {
-        this.$router.push('/HomeDashboard')
+        this.getUser()
     },
 }
 </script>
